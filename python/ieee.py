@@ -22,10 +22,10 @@ os.system("welcome.vbs")
 news = "https://news.google.com/news/rss"
 
 #Setup weather API
-owm = pyowm.OWM('59e4065593a3042148ff4cf85edc626a')
+owm = pyowm.OWM('Add Personal Key')
 
 #setting up wolfram alpha client for use
-app_id = "TKPTKH-GULXE8R83L"
+app_id = "Add Personal ID"
 client = wolframalpha.Client(app_id)
 
 #Initiate Speech Engine
