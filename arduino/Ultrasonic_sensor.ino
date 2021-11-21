@@ -4,9 +4,8 @@
  *  an appropriate amount, then the ldr will activate and dim the lights depending on the amount of light
  *  around the ldr.
  */
-
-//Need to fill out all the pins according to circuit
-//Need to test values if they are accurate (LDR and distance)
+ 
+//Need to test values if they are accurate (distance)
 //If possible use motion sensor to trigger ultrasonic sensor
 int led = 13;
 int ldrPin = A0;
@@ -14,10 +13,10 @@ int initialBright = 25;
 int ldrInput;
 
 int trigPin = 3;
-int echoPin = 2
+int echoPin = 2;
 int duration;
 int distance;
-
+int average;
 void turnOnLight(){
   analogWrite(led, initialBright); 
   if(ldrInput > 100){
@@ -44,21 +43,22 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-    ldrInput = analogRead(ldrPin);
-    delay(500);
-    digitalWrite(trigPin, LOW);
-    delay(1);
-    digitalWrite(trigPin, HIGH);
-    delay(10);
-    digitalWrite(trigPin,LOW);
-    duration = pulseIn(echoPing, HIGH);
-    distance = (duration/2) / 29.1;
-    Serial.println(distance);
     
-  if(distance >= 20 && distance <= 75){
+    ldrInput = analogRead(ldrPin);
+    digitalWrite(trigPin, LOW);
+    delay(10);
+    digitalWrite(trigPin, HIGH);
+    delay(50);
+    digitalWrite(trigPin, LOW);
+    duration = pulseIn(echoPin, HIGH);
+    distance = (duration/2) / 29.1;
+    
+    Serial.println(distance);
+  if(distance >= 60 && distance <= 80){
     turnOnLight();
   }
   else{
     turnOffLight();
   }
+  delay(100);
 }
