@@ -1,3 +1,10 @@
+/* 
+ *  This portion of code is used for the ultrasonic sensor and the light dependent resistor.
+ *  The ultrasonic sensor will pick up the distance between the sensor and the person. If the distance is 
+ *  an appropriate amount, then the ldr will activate and dim the lights depending on the amount of light
+ *  around the ldr.
+ */
+
 //Need to fill out all the pins according to circuit
 //Need to test values if they are accurate (LDR and distance)
 //If possible use motion sensor to trigger ultrasonic sensor
@@ -14,16 +21,13 @@ int distance;
 void turnOnLight(){
   analogWrite(led, initialBright); 
   delay(50);
-  if(ldrInput > 800 && ldrInput <= 1000){
+  if(ldrInput > 100){
     analogWrite(led, 0);
   }
-  else if(ldrInput > 600 && ldrInput <= 800){
-    analogWrite(led, 25 );
+  else if(ldrInput > 40 && ldrInput <= 70){
+    analogWrite(led, 75); 
   }
-  else if(ldrInput > 200 && ldrInput <= 400){
-    analogWrite(led, 100); 
-  }
-  else if(ldrInput <= 200){
+  else if(ldrInput <= 15){
     analogWrite(led, 150);
   }
 }
@@ -42,6 +46,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
     ldrInput = analogRead(ldrPin);
+    delay(500);
     digitalWrite(trigPin, LOW);
     delay(1);
     digitalWrite(trigPin, HIGH);
