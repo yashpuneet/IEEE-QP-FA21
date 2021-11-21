@@ -8,9 +8,9 @@
 //Need to fill out all the pins according to circuit
 //Need to test values if they are accurate (LDR and distance)
 //If possible use motion sensor to trigger ultrasonic sensor
-int led =;
-int ldrPin = ;
-int initialBright = 50;
+int led = 13;
+int ldrPin = A0;
+int initialBright = 25;
 int ldrInput;
 
 int trigPin =;
