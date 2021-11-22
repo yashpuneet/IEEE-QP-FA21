@@ -8,7 +8,7 @@ void setup()
   // Print a message to the LCD.
   lcd.backlight();
   lcd.setCursor(0,0);
-  lcd.print("Hello, world!");
+  lcd.print("Hello");
 }
 
 

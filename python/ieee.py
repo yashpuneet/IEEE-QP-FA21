@@ -18,14 +18,16 @@ from urllib.request import urlopen
 
 os.system("welcome.vbs")
 
+count = 0
+
 #Setup News scrapper
 news = "https://news.google.com/news/rss"
 
 #Setup weather API
-owm = pyowm.OWM('Add Personal Key')
+owm = pyowm.OWM('59e4065593a3042148ff4cf85edc626a')
 
 #setting up wolfram alpha client for use
-app_id = "Add Personal ID"
+app_id = "TKPTKH-GULXE8R83L"
 client = wolframalpha.Client(app_id)
 
 #Initiate Speech Engine
@@ -71,7 +73,7 @@ def MyCommand(Ques):
 
 def whichSong():
     songs = MyCommand("Which song would you like to listen to?")
-    songpath = "D://" + songs + ".mp3"
+    songpath = "music/"+songs+".mp3"
     return songpath
 
 def read():
@@ -213,30 +215,34 @@ while True:
             sg = owm.weather_at_place('Singapore, SG')
             weather = sg.get_weather()
             print(weather.get_sunrise_time(timeformat='iso'))
+            engine.say(weather.get_sunrise_time(timeformat='iso'))
             continue
         
         if detail == "sunset":
             sg = owm.weather_at_place('Singapore, SG')
             weather = sg.get_weather()
             print(weather.get_sunset_time(timeformat='iso'))
+            engine.say(weather.get_sunset_time(timeformat='iso'))
             continue
 
         if detail == "climate":
             sg = owm.weather_at_place('Singapore, SG')
             weather = sg.get_weather()
             print(weather.get_detailed_status())
+            engine.say(weather.get_detailed_status())
             continue
 
         if detail == "humidity":
             sg = owm.weather_at_place('Singapore, SG')
             weather = sg.get_weather()
             humid = weather.get_humidity()
-            engine.say("The humidity is " + humid + "percent")
+            engine.say("The humidity is " + str(humid) + "percent")
             print(humid)
             engine.runAndWait()
             continue
 
     if type == "headlines":
+        count = 0;
         Client = urlopen(news)
         xmlpage = Client.read()
         Client.close()
@@ -253,6 +259,9 @@ while True:
             engine.say(headline)
             engine.runAndWait()
             print("-"*60)
+            count = count + 1
+            if count > 10:
+                break;
 
         continue
             

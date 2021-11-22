@@ -39,6 +39,7 @@ void loop() {
 
   lcd.setCursor(0,1);
   lcd.print(temperatureInCelsius);
+  Serial.println(temperatureInCelsius);
   lcd.setCursor(5,1);
   lcd.print((char)223);
   lcd.setCursor(6,1);
@@ -46,6 +47,7 @@ void loop() {
 
   lcd.setCursor(9,1);
   lcd.print(temperatureInFahrenheit);
+  Serial.println(temperatureInFahrenheit);
   lcd.setCursor(14,1);
   lcd.print((char)223);
   lcd.setCursor(15,1);
